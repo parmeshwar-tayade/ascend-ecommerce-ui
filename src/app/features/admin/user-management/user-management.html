@@ -1,0 +1,78 @@
+<section class="user-management-shell">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">Administration</p>
+      <h1>User Management</h1>
+    </div>
+
+    <button mat-flat-button color="primary" type="button">
+      <mat-icon>person_add</mat-icon>
+      Add User
+    </button>
+  </header>
+
+  @if (loading()) {
+    <div class="loading-state">
+      <mat-spinner diameter="42"></mat-spinner>
+      <span>Loading users...</span>
+    </div>
+  } @else {
+    <mat-card class="table-card">
+      <div class="table-header">
+        <h2>Registered Users</h2>
+      </div>
+
+      @if (errorMessage()) {
+        <div class="error-box">{{ errorMessage() }}</div>
+      }
+
+      <table mat-table [dataSource]="users()" class="user-table">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="roles">
+          <th mat-header-cell *matHeaderCellDef>Roles</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="role-list">
+              @for (role of element.roles; track role) {
+                <span class="role-badge">{{ role }}</span>
+              }
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            <span class="status-badge" [class.admin]="element.status === 'ADMIN'" [class.active]="element.status === 'ACTIVE'">
+              {{ element.status }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button color="primary" type="button">View</button>
+            <button mat-stroked-button color="warn" type="button" (click)="deleteUser(element.id)">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card>
+  }
+</section>

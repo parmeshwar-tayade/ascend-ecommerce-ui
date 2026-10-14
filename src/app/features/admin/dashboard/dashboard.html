@@ -1,0 +1,87 @@
+<section class="dashboard-shell">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <h1>Dashboard Overview</h1>
+    </div>
+
+    <div class="header-actions">
+      <button mat-stroked-button routerLink="/admin/products/create">
+        <mat-icon>add</mat-icon>
+        Add Product
+      </button>
+      <button mat-flat-button color="primary" routerLink="/admin/categories/create">
+        <mat-icon>category</mat-icon>
+        New Category
+      </button>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="loading-state">
+      <mat-spinner diameter="42"></mat-spinner>
+      <span>Loading dashboard data...</span>
+    </div>
+  } @else {
+    <div class="stats-grid">
+      @for (stat of stats(); track stat.label) {
+        <mat-card class="stat-card" [class]="stat.tone">
+          <div class="stat-caption">{{ stat.label }}</div>
+          <div class="stat-value">{{ stat.value }}</div>
+        </mat-card>
+      }
+    </div>
+
+    <div class="panel-grid">
+      <mat-card class="panel-card">
+        <div class="panel-header">
+          <h2>Quick Actions</h2>
+        </div>
+
+        <div class="action-list">
+          <button mat-stroked-button routerLink="/admin/products">Manage Products</button>
+          <button mat-stroked-button routerLink="/admin/categories">Manage Categories</button>
+          <button mat-stroked-button routerLink="/admin/orders">Manage Orders</button>
+          <button mat-stroked-button routerLink="/admin/users">Manage Users</button>
+        </div>
+      </mat-card>
+
+      <mat-card class="panel-card">
+        <div class="panel-header">
+          <h2>Low Stock Alert</h2>
+        </div>
+
+        @if (lowStockProducts().length > 0) {
+          <ul class="alert-list">
+            @for (item of lowStockProducts(); track item.productId ?? item.productId) {
+              <li>
+                <span>{{ item.productName ?? item.productName ?? 'Unnamed Product' }}</span>
+                <strong>{{ item.stockQuantity ?? item.stockQuantity ?? 0 }} left</strong>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="muted-text">All products are stocked above the low-stock threshold.</p>
+        }
+      </mat-card>
+    </div>
+
+    <mat-card class="panel-card full-width">
+      <div class="panel-header">
+        <h2>Top Products</h2>
+      </div>
+
+      <div class="product-list">
+        @for (product of topProducts(); track product.productId ?? product.productId) {
+          <div class="product-row">
+            <div>
+              <div class="product-name">{{ product.productName ?? product.productName ?? 'Unnamed Product' }}</div>
+              <div class="product-meta">{{ product.categoryName ?? 'Uncategorized' }}</div>
+            </div>
+            <div class="product-price">${{ (product.price ?? 0).toLocaleString() }}</div>
+          </div>
+        }
+      </div>
+    </mat-card>
+  }
+</section>

@@ -1,0 +1,32 @@
+<section class="create-category">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Catalog</p>
+      <h1>Create Category</h1>
+    </div>
+    <a routerLink="/admin/categories" class="secondary-link">Back to Categories</a>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="category-form">
+    <div class="form-grid">
+      <label class="full-width">
+        <span>Category name</span>
+        <input formControlName="categoryName" type="text" placeholder="Enter category name" />
+      </label>
+
+      <label class="full-width">
+        <span>Description</span>
+        <textarea formControlName="description" rows="4" placeholder="Category description"></textarea>
+      </label>
+    </div>
+
+    @if (errorMessage) {
+      <div class="error-message">{{ errorMessage }}</div>
+    }
+
+    <div class="actions">
+      <button type="button" class="secondary-button" routerLink="/admin/categories">Cancel</button>
+      <button type="submit" class="primary-button">Create Category</button>
+    </div>
+  </form>
+</section>

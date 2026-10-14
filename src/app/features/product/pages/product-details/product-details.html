@@ -1,0 +1,175 @@
+<section class="product-detail-page">
+
+  @if (loading) {
+    <div class="loading-box">
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="40">
+      </mat-progress-spinner>
+
+      <p>Loading product details...</p>
+    </div>
+  }
+
+  @else if (errorMessage) {
+    <div class="error-box">
+      <p>{{ errorMessage }}</p>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        routerLink="/products">
+        Back to products
+      </button>
+    </div>
+  }
+
+  @else if (product; as p) {
+
+    <div class="page-actions">
+      <button
+        mat-stroked-button
+        color="primary"
+        routerLink="/products">
+        Back to products
+      </button>
+    </div>
+
+    <mat-card class="product-card">
+
+      <!-- IMAGE SECTION -->
+      <div class="product-gallery">
+
+        <img
+          class="main-image"
+          [src]="p.imageUrls?.[0] || '/assets/images/default-product.jpg'"
+          [alt]="p.productName">
+
+        @if ((p.imageUrls?.length ?? 0) > 1) {
+
+          <div class="thumbnail-row">
+
+            @for (image of p.imageUrls; track image) {
+              <img
+                class="thumbnail"
+                [src]="image"
+                [alt]="p.productName">
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+      <!-- CONTENT SECTION -->
+      <div class="product-content">
+
+        <h1>{{ p.productName }}</h1>
+
+        <div class="chip-row">
+
+          <span class="product-chip category">
+            {{ p.categoryName }}
+          </span>
+
+          @if (p.isFeatured) {
+            <span class="product-chip featured">
+              Featured
+            </span>
+          }
+
+          @if ((p.stockQuantity ?? 0) > 0) {
+            <span class="product-chip available">
+              In Stock
+            </span>
+          } @else {
+            <span class="product-chip unavailable">
+              Out Of Stock
+            </span>
+          }
+
+        </div>
+
+        <!-- PRICE -->
+
+        <div class="price-row">
+
+          <span class="current-price">
+            ₹{{ p.discountPrice ?? p.price }}
+          </span>
+
+          @if (
+            (p.discountPrice ?? 0) > 0 &&
+            (p.discountPrice ?? 0) < (p.price ?? 0)
+          ) {
+
+            <span class="original-price">
+              ₹{{ p.price }}
+            </span>
+
+          }
+
+        </div>
+
+        <!-- DESCRIPTION -->
+
+        <p class="description">
+          {{ p.description }}
+        </p>
+
+        <!-- DETAILS -->
+
+        <div class="info-grid">
+
+          <div class="info-item">
+            <strong>SKU</strong>
+            <p>{{ p.sku || 'N/A' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Brand</strong>
+            <p>{{ p.brand || 'N/A' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Category</strong>
+            <p>{{ p.categoryName || 'N/A' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Status</strong>
+            <p>{{ p.status || 'ACTIVE' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Stock</strong>
+            <p>{{ p.stockQuantity ?? 0 }}</p>
+          </div>
+
+        </div>
+
+        <!-- ACTIONS -->
+
+        <div class="action-row">
+
+          <button
+            mat-flat-button
+            color="primary">
+            Add To Cart
+          </button>
+
+          <button
+            mat-stroked-button
+            color="primary">
+            Buy Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+  }
+
+</section>

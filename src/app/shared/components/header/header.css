@@ -1,0 +1,91 @@
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 70px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+
+  .logo-icon {
+    font-size: 28px;
+    height: 28px;
+    width: 28px;
+  }
+
+  .logo-text {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+.search-container {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 32px;
+  display: flex;
+  align-items: center;
+
+  .search-field {
+    width: 100%;
+    
+
+    ::v-deep .mat-mdc-form-field-subscript-wrapper {
+      display: none; /* Hides the bottom padding reserved for errors/hints */
+    }
+    
+    ::v-deep .mat-mdc-text-field-wrapper {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      border-radius: 8px;
+    }
+
+    ::v-deep .mat-mdc-form-field-infix {
+      padding-top: 8px !important;
+      padding-bottom: 8px !important;
+      min-height: 40px !important;
+    }
+    
+    input {
+      color: white;
+    }
+    
+    label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+.actions-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .nav-button {
+    font-weight: 500;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .logo-text {
+    display: none; /* Hide logo text on small screens */
+  }
+
+  .search-container {
+    margin: 0 12px;
+  }
+  
+  .signup-btn {
+    display: none; /* Hide signup text button, rely on login or menu fallback */
+  }
+}

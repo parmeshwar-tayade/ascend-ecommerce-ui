@@ -1,0 +1,39 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to ShopEasy</h1>
+    <p>Discover amazing products at unbeatable prices.</p>
+
+    <button class="btn-primary">
+      Shop Now
+    </button>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories">
+
+  <div class="section-header">
+    <h2>Shop by Category</h2>
+  </div>
+
+  <div class="category-grid">
+
+    @for(category of categories; track category) {
+      <div class="category-card">
+        <h3>{{ category }}</h3>
+      </div>
+    }
+
+  </div>
+
+</section>
+
+<!-- Featured Products -->
+<section class="products">
+
+  <div class="section-header">
+    <h2>Featured Products</h2>
+  </div>
+
+  <div class="product-grid"></div>

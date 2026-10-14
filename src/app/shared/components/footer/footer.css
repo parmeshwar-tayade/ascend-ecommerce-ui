@@ -1,0 +1,174 @@
+.ecommerce-footer {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  padding: 48px 24px 24px 24px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 32px;
+  padding-bottom: 32px;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.brand-info {
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: #ffffff;
+
+    .logo-icon {
+      font-size: 28px;
+      height: 28px;
+      width: 28px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+  }
+
+  .brand-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #b0b0b0;
+    margin-bottom: 16px;
+    max-width: 300px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 8px;
+    margin-left: -8px; /* Alignment fix for button padding */
+    
+    button {
+      color: #b0b0b0;
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.contact-info {
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: #b0b0b0;
+
+    mat-icon {
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+      color: #b0b0b0;
+    }
+    
+    span {
+      line-height: 1.4;
+    }
+  }
+}
+
+.footer-divider {
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
+  max-width: 1200px;
+  margin: 0 auto !important;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #888888;
+
+  .legal-links {
+    display: flex;
+    gap: 24px;
+    
+    a {
+      color: #888888;
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+/* Responsiveness for Tablets and Mobile */
+@media (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 24px;
+  }
+}
+
+@media (max-width: 599px) {
+  .ecommerce-footer {
+    padding: 32px 16px 16px 16px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 16px;
+    
+    .legal-links {
+      width: 100%;
+      justify-content: space-between;
+      gap: 0;
+    }
+  }
+}

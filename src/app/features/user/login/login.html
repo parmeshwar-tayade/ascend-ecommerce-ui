@@ -1,0 +1,174 @@
+<div
+  class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+
+  <mat-card
+    class="w-full max-w-md shadow-xl">
+
+    <div class="p-8">
+
+      <div class="text-center mb-8">
+
+        <h1
+          class="text-3xl font-bold text-gray-800">
+
+          Welcome Back
+
+        </h1>
+
+        <p
+          class="text-gray-500 mt-2">
+
+          Sign in to your account
+
+        </p>
+
+      </div>
+
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="login()">
+
+        <!-- Email -->
+
+        <mat-form-field
+          appearance="outline"
+          class="w-full">
+
+          <mat-label>
+            Email Address
+          </mat-label>
+
+          <input
+            matInput
+            type="email"
+            formControlName="email">
+
+          @if (
+            loginForm.get('email')?.hasError('required') &&
+            loginForm.get('email')?.touched
+          ) {
+
+            <mat-error>
+              Email is required
+            </mat-error>
+
+          }
+
+          @if (
+            loginForm.get('email')?.hasError('email') &&
+            loginForm.get('email')?.touched
+          ) {
+
+            <mat-error>
+              Enter a valid email
+            </mat-error>
+
+          }
+
+        </mat-form-field>
+
+        <!-- Password -->
+
+        <mat-form-field
+          appearance="outline"
+          class="w-full">
+
+          <mat-label>
+            Password
+          </mat-label>
+
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password">
+
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword">
+
+            <mat-icon>
+
+              {{
+                hidePassword
+                  ? 'visibility_off'
+                  : 'visibility'
+              }}
+
+            </mat-icon>
+
+          </button>
+
+          @if (
+            loginForm.get('password')?.hasError('required') &&
+            loginForm.get('password')?.touched
+          ) {
+
+            <mat-error>
+              Password is required
+            </mat-error>
+
+          }
+
+        </mat-form-field>
+
+        <!-- Remember Me -->
+
+        <div
+          class="flex justify-between items-center mb-4">
+
+          <mat-checkbox
+            formControlName="rememberMe">
+
+            Remember Me
+
+          </mat-checkbox>
+
+          <a
+            routerLink="/user/forgot-password"
+            class="text-blue-600 hover:underline">
+
+            Forgot Password?
+
+          </a>
+
+        </div>
+
+        <!-- Submit -->
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="w-full !py-6">
+
+          Sign In
+
+        </button>
+
+        <!-- Register -->
+
+        <div
+          class="text-center mt-6">
+
+          <span class="text-gray-600">
+            Don't have an account?
+          </span>
+
+          <a
+            routerLink="/user/register"
+            class="text-blue-600 ml-2 font-semibold hover:underline">
+
+            Create Account
+
+          </a>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </mat-card>
+
+</div>

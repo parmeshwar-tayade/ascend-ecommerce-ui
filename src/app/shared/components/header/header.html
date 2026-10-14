@@ -1,0 +1,299 @@
+<mat-toolbar
+  class="!bg-blue-600 !text-white shadow-md">
+
+  <div
+    class="max-w-7xl mx-auto w-full flex items-center gap-4">
+
+    <!-- Logo -->
+
+    <a
+      routerLink="/"
+      class="text-2xl font-bold whitespace-nowrap">
+
+      ShopEasy
+
+    </a>
+
+    <!-- Search -->
+
+    <div
+      class="hidden md:flex flex-1">
+
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Search products..."
+        class="w-full px-4 py-2 rounded-md border border-gray-300 text-black bg-white outline-none">
+
+    </div>
+
+    <!-- Main Navigation -->
+
+    <nav
+      class="hidden lg:flex items-center gap-5">
+
+      <button
+        type="button"
+        class="text-white hover:opacity-90"
+        (click)="goToHome()">
+        Home
+      </button>
+
+      <button
+        type="button"
+        class="text-white hover:opacity-90"
+        (click)="goToProducts()">
+        Products
+      </button>
+
+      @if (isCustomer()) {
+
+        <button
+          type="button"
+          class="text-white hover:opacity-90"
+          (click)="goToCart()">
+          Cart
+        </button>
+
+        <button
+          type="button"
+          class="text-white hover:opacity-90"
+          (click)="goToOrders()">
+          My Orders
+        </button>
+
+      }
+
+      @if (isAdmin()) {
+
+        <button
+          type="button"
+          class="text-white hover:opacity-90"
+          (click)="goToDashboard()">
+          Dashboard
+        </button>
+
+        <button
+          type="button"
+          class="text-white hover:opacity-90"
+          (click)="goToProductsManagement()">
+          Products
+        </button>
+
+        <button
+          type="button"
+          class="text-white hover:opacity-90"
+          (click)="goToCategoriesManagement()">
+          Categories
+        </button>
+
+        <button
+          type="button"
+          class="text-white hover:opacity-90"
+          (click)="goToOrdersManagement()">
+          Orders
+        </button>
+
+        <button
+          type="button"
+          class="text-white hover:opacity-90"
+          (click)="goToUsersManagement()">
+          Users
+        </button>
+
+      }
+
+    </nav>
+
+    <!-- Customer Cart -->
+
+    @if (isCustomer()) {
+
+      <button
+        mat-icon-button
+        routerLink="/cart"
+        [matBadge]="cartCount"
+        matBadgeColor="warn">
+
+        <mat-icon>
+          shopping_cart
+        </mat-icon>
+
+      </button>
+
+    }
+
+    <!-- Guest -->
+
+    @if (!isLoggedIn()) {
+
+      <div class="flex gap-2">
+
+        <button
+          mat-stroked-button
+          routerLink="/user/login">
+
+          Sign In
+
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/user/register">
+
+          Register
+
+        </button>
+
+      </div>
+
+    }
+
+    <!-- Logged In -->
+
+    @if (isLoggedIn()) {
+
+      <button
+        mat-button
+        [matMenuTriggerFor]="userMenu">
+
+        <mat-icon>
+          account_circle
+        </mat-icon>
+
+        {{ userName() }}
+
+      </button>
+
+      <mat-menu #userMenu="matMenu">
+
+        <button
+          mat-menu-item
+          type="button"
+          (click)="goToProfile()">
+
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+
+        </button>
+
+        @if (isCustomer()) {
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToCart()">
+
+            <mat-icon>shopping_cart</mat-icon>
+            <span>Cart</span>
+
+          </button>
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToOrders()">
+
+            <mat-icon>receipt_long</mat-icon>
+            <span>My Orders</span>
+
+          </button>
+
+        }
+
+        @if (isAdmin()) {
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToDashboard()">
+
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+
+          </button>
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToProductsManagement()">
+
+            <mat-icon>inventory_2</mat-icon>
+            <span>Manage Products</span>
+
+          </button>
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToCreateProduct()">
+
+            <mat-icon>add_box</mat-icon>
+            <span>Create Product</span>
+
+          </button>
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToCategoriesManagement()">
+
+            <mat-icon>category</mat-icon>
+            <span>Manage Categories</span>
+
+          </button>
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToCreateCategory()">
+
+            <mat-icon>playlist_add</mat-icon>
+            <span>Create Category</span>
+
+          </button>
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToOrdersManagement()">
+
+            <mat-icon>shopping_bag</mat-icon>
+            <span>Manage Orders</span>
+
+          </button>
+
+          <button
+            mat-menu-item
+            type="button"
+            (click)="goToUsersManagement()">
+
+            <mat-icon>group</mat-icon>
+            <span>Manage Users</span>
+
+          </button>
+
+        }
+
+        <button
+          mat-menu-item
+          (click)="logout()">
+
+          <mat-icon>
+            logout
+          </mat-icon>
+
+          <span>
+            Logout
+          </span>
+
+        </button>
+
+      </mat-menu>
+
+    }
+
+  </div>
+
+</mat-toolbar>
