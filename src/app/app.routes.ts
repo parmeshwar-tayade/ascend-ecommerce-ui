@@ -7,16 +7,21 @@ export const routes: Routes = [
 
   {
     path: '',
-    loadComponent: () =>
-      import('./features/home/home')
-        .then(c => c.Home)
+    loadChildren: () =>
+      import('./features/public/public.routes')
+        .then(r => r.PUBLIC_ROUTES)
   },
 
   {
-    path: 'products',
-    loadChildren: () =>
-      import('./features/product/product.routes')
-        .then(r => r.PRODUCT_ROUTES)
+    path: 'login',
+    redirectTo: 'user/login',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'register',
+    redirectTo: 'user/register',
+    pathMatch: 'full'
   },
 
   {
@@ -27,27 +32,32 @@ export const routes: Routes = [
   },
 
   {
-    path: 'cart',
+    path: 'customer',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./features/cart/cart.routes')
-        .then(r => r.CART_ROUTES)
+      import('./features/customer/customer.routes')
+        .then(r => r.CUSTOMER_ROUTES)
+  },
+
+  {
+    path: 'cart',
+    canActivate: [authGuard],
+    redirectTo: 'customer/cart',
+    pathMatch: 'full'
   },
 
   {
     path: 'checkout',
     canActivate: [authGuard],
-    loadChildren: () =>
-      import('./features/checkout/checkout.routes')
-        .then(r => r.CHECKOUT_ROUTES)
+    redirectTo: 'customer/checkout',
+    pathMatch: 'full'
   },
 
   {
     path: 'orders',
     canActivate: [authGuard],
-    loadChildren: () =>
-      import('./features/order/order.routes')
-        .then(r => r.ORDER_ROUTES)
+    redirectTo: 'customer/orders',
+    pathMatch: 'full'
   },
 
   {

@@ -18,15 +18,29 @@ export const ADMIN_ROUTES: Routes = [
   {
     path: 'products',
     loadComponent: () =>
-      import('./product-management/product-management')
+      import('./products/product-management/product-management')
         .then(c => c.ProductManagement)
   },
 
   {
     path: 'products/create',
     loadComponent: () =>
-      import('./product-management/create-product/create-product')
+      import('./products/create-product/create-product')
         .then(c => c.CreateProduct)
+  },
+
+  {
+    path: 'products/update/:id',
+    loadComponent: () =>
+      import('./products/update-product/update-product')
+        .then(c => c.UpdateProduct)
+  },
+
+  {
+    path: 'products/:id',
+    loadComponent: () =>
+      import('./products/product-details/product-details')
+        .then(c => c.ProductDetails)
   },
 
   {
@@ -44,16 +58,29 @@ export const ADMIN_ROUTES: Routes = [
   },
 
   {
+    path: 'inventory',
+    loadComponent: () =>
+      import('./products/product-management/product-management')
+        .then(c => c.ProductManagement)
+  },
+
+  {
     path: 'categories',
     loadComponent: () =>
-      import('./category-management/category-management')
+      import('./categories/category-management/category-management')
         .then(c => c.CategoryManagement)
   },
 
   {
     path: 'categories/create',
     loadComponent: () =>
-      import('./category-management/create-category/create-category')
+      import('./categories/create-category/create-category')
         .then(c => c.CreateCategory)
+  },
+
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
   }
 ];

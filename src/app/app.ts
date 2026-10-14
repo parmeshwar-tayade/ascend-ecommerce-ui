@@ -4,7 +4,8 @@ import { Header } from './shared/components/header/header';
 import { Footer } from './shared/components/footer/footer';
 
 @Component({
-  imports: [RouterOutlet,Header,Footer],
+  standalone: true,
+  imports: [RouterOutlet, Header, Footer],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

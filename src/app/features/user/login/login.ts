@@ -20,6 +20,7 @@ import { LoginRequest } from '../../../core/models/login.request.model';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

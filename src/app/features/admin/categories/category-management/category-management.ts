@@ -6,8 +6,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 
-import { Category } from '../../../core/models/category.model';
-import { CategoryService } from '../../../core/services/category-service';
+import { Category } from '../../../../core/models/category.model';
+import { CategoryService } from '../../../../core/services/category-service';
 
 @Component({
   selector: 'app-category-management',

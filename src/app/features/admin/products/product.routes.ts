@@ -3,14 +3,20 @@ import { Routes } from '@angular/router';
 export const PRODUCT_ROUTES: Routes = [
   {
     path: '',
+    redirectTo: 'list',
+    pathMatch: 'full'
+  },
+  
+  {
+    path: 'create',
     loadComponent: () =>
-      import('./pages/product-list/product-list')
-        .then(c => c.ProductList)
+      import('./create-product/create-product')
+        .then(c => c.CreateProduct)
   },
   {
     path: ':id',
     loadComponent: () =>
-      import('./pages/product-details/product-details')
+      import('./product-details/product-details')
         .then(c => c.ProductDetails)
   }
 ];

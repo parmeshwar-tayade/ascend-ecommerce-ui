@@ -1,0 +1,212 @@
+<section class="product-detail-page">
+
+  @if (loading) {
+
+    <div class="loading-box">
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="40">
+      </mat-progress-spinner>
+
+      <p>Loading product details...</p>
+    </div>
+
+  } @else if (errorMessage) {
+
+    <div class="error-box">
+      <p>{{ errorMessage }}</p>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        routerLink="/admin/products">
+        Back to Products
+      </button>
+    </div>
+
+  } @else if (product) {
+
+    <div class="page-actions">
+      <button
+        mat-stroked-button
+        color="primary"
+        routerLink="/admin/products">
+        Back to Products
+      </button>
+    </div>
+
+    <mat-card class="product-card">
+
+      <!-- IMAGE SECTION -->
+      <div class="product-gallery">
+
+        <img
+          class="main-image"
+          [src]="product.imageUrls?.[0] || '/assets/images/default-product.jpg'"
+          [alt]="product.productName">
+
+        @if ((product.imageUrls?.length ?? 0) > 1) {
+
+          <div class="thumbnail-row">
+
+            @for (image of product.imageUrls; track image) {
+
+              <img
+                class="thumbnail"
+                [src]="image"
+                [alt]="product.productName">
+
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+      <!-- PRODUCT CONTENT -->
+
+      <div class="product-content">
+
+        <h1>{{ product.productName }}</h1>
+
+        <div class="chip-row">
+
+          <span class="product-chip category">
+            {{ product.categoryName }}
+          </span>
+
+          @if (product.isFeatured) {
+            <span class="product-chip featured">
+              Featured
+            </span>
+          }
+
+          @if ((product.stockQuantity ?? 0) > 0) {
+            <span class="product-chip available">
+              In Stock
+            </span>
+          } @else {
+            <span class="product-chip unavailable">
+              Out Of Stock
+            </span>
+          }
+
+        </div>
+
+        <!-- PRICE -->
+
+        <div class="price-row">
+
+          <span class="current-price">
+            ₹{{ product.discountPrice ?? product.price }}
+          </span>
+
+          @if (
+            (product.discountPrice ?? 0) > 0 &&
+            (product.discountPrice ?? 0) < (product.price ?? 0)
+          ) {
+
+            <span class="original-price">
+              ₹{{ product.price }}
+            </span>
+
+            <span class="discount-badge">
+              {{ discountPercentage }}% OFF
+            </span>
+
+          }
+
+        </div>
+
+        <!-- DESCRIPTION -->
+
+        <p class="description">
+          {{ product.description }}
+        </p>
+
+        <!-- DETAILS -->
+
+        <div class="info-grid">
+
+          <div class="info-item">
+            <strong>SKU</strong>
+            <p>{{ product.sku || 'N/A' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Brand</strong>
+            <p>{{ product.brand || 'N/A' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Category</strong>
+            <p>{{ product.categoryName || 'N/A' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Status</strong>
+            <p>{{ product.status || 'ACTIVE' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Price</strong>
+            <p>₹{{ product.price ?? 0 }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Discount Price</strong>
+            <p>₹{{ product.discountPrice ?? 0 }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Discount</strong>
+            <p>{{ discountPercentage }}%</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Stock Quantity</strong>
+            <p>{{ product.stockQuantity ?? 0 }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Featured</strong>
+            <p>{{ product.isFeatured ? 'Yes' : 'No' }}</p>
+          </div>
+
+          <div class="info-item">
+            <strong>Availability</strong>
+            <p>
+              {{ product.available ? 'Available' : 'Unavailable' }}
+            </p>
+          </div>
+
+        </div>
+
+        <!-- ADMIN ACTIONS -->
+
+        <div class="action-row">
+
+          <button
+            mat-flat-button
+            color="primary"
+            [routerLink]="['/admin/products/update', product.productId]">
+            Update Product
+          </button>
+
+          <button
+            mat-stroked-button
+            color="accent"
+            [routerLink]="['/admin/products', product.productId, 'reviews']">
+            View Reviews
+          </button>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  }
+
+</section>

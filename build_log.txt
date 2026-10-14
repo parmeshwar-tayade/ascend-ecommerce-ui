@@ -1,0 +1,39 @@
+Initial chunk files | Names               |  Raw size
+chunk-VIUXISWI.js   | -                   | 948.88 kB | 
+chunk-UXNVMBCW.js   | -                   | 252.69 kB | 
+main.js             | main                | 242.06 kB | 
+chunk-J5GT5NW3.js   | -                   | 214.65 kB | 
+chunk-CA4DUBJ7.js   | -                   | 169.69 kB | 
+chunk-KFDZTMLP.js   | -                   | 165.59 kB | 
+chunk-4K3BPDFX.js   | -                   | 135.54 kB | 
+chunk-V736ST3Z.js   | -                   |  51.92 kB | 
+chunk-AF2KXT4D.js   | -                   |  25.10 kB | 
+styles.css          | styles              |  21.53 kB | 
+chunk-H2PHDXXH.js   | -                   |   2.69 kB | 
+chunk-GOMI4DH3.js   | -                   |   1.42 kB | 
+chunk-DCYC2CMN.js   | -                   | 667 bytes | 
+
+                    | Initial total       |   2.23 MB
+
+Lazy chunk files    | Names               |  Raw size
+chunk-6DYJW5F5.js   | product-details     | 231.85 kB | 
+chunk-OWFNFGE3.js   | -                   | 170.35 kB | 
+chunk-DNJKGF7X.js   | -                   | 116.01 kB | 
+chunk-G3D35Y4P.js   | -                   |  64.96 kB | 
+chunk-HKMEVLC2.js   | -                   |  31.30 kB | 
+chunk-HZTB5HZC.js   | -                   |  26.67 kB | 
+chunk-HTBIULYM.js   | -                   |  23.36 kB | 
+chunk-N3F2AJHB.js   | dashboard           |  22.13 kB | 
+chunk-SIZP2BRU.js   | product-management  |  21.08 kB | 
+chunk-GRUVXVRZ.js   | user-management     |  20.18 kB | 
+chunk-OBQF3566.js   | register            |  17.83 kB | 
+chunk-NACVBRNX.js   | create-product      |  17.64 kB | 
+chunk-2DJSYCMI.js   | product-list        |  17.07 kB | 
+chunk-B6NHXZVE.js   | category-management |  16.22 kB | 
+chunk-R7ZJKEZA.js   | login               |  12.02 kB | 
+...and 19 more lazy chunks files. Use "--verbose" to show all the files.
+
+Application bundle generation complete. [36.750 seconds] - 2026-10-14T05:49:01.933Z
+
+Output location: C:\Users\parmeshwar.tayade\OneDrive - Iris Software Inc\Documents\Angular\ascend-ecommerce-ui\dist\ascend-ecommerce-ui
+

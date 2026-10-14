@@ -6,8 +6,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { Router, RouterLink } from '@angular/router';
 
-import { Product } from '../../../core/models/product.model';
-import { AdminProductService } from '../../../core/services/admin-product-service';
+import { Product } from '../../../../core/models/product.model';
+import { AdminProductService } from '../../../../core/services/admin-product-service';
 
 @Component({
   selector: 'app-product-management',
@@ -58,19 +58,24 @@ export class ProductManagement implements OnInit {
       return;
     }
 
-   // this.loading.set(true);
-   // this.errorMessage.set('');
-
     this.productService.getProductByIdForAdmin(productId).subscribe({
       next: () => {
         this.loading.set(false);
-        this.router.navigate(['/products', productId]);
+        this.router.navigate(['/admin/products', productId]);
       },
       error: () => {
         this.loading.set(false);
         this.errorMessage.set('Unable to load product details.');
       }
     });
+  }
+
+  editProduct(productId?: number): void {
+    if (!productId) {
+      return;
+    }
+
+    this.router.navigate(['/admin/products/update', productId]);
   }
 
   deleteProduct(id?: number): void {

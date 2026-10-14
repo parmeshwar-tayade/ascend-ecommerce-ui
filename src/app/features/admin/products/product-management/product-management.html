@@ -60,6 +60,7 @@
               <td mat-cell *matCellDef="let product">
                 <div class="action-buttons">
                   <button mat-stroked-button color="primary" type="button" (click)="viewProduct(product.productId)">View</button>
+                  <button mat-stroked-button color="accent" type="button" (click)="editProduct(product.productId)">Edit</button>
                   <button mat-flat-button color="warn" type="button" (click)="deleteProduct(product.productId)">Delete</button>
                 </div>
               </td>
